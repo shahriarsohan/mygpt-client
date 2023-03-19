@@ -3,38 +3,37 @@ import React from "react";
 import Submenu from "./Submenu";
 import * as Icons from "react-feather";
 import UserSettings from "./Settings";
-import { usePrefers } from "@/lib/use-prefers";
+import { useRouter } from "next/router";
+import { useFetchUser } from "@/hooks/useFetchUser";
 
 const Navbar = () => {
   const theme = useTheme();
-  const prefers = usePrefers();
+  const router = useRouter();
+  const { user } = useFetchUser();
+
   return (
     <>
       <nav className="menu-nav">
         <h1 className="menu-nav__title">MyGPT Dashboard</h1>
         <div>
-          {/* <Button
+          <Button
             aria-label="Toggle Dark mode"
             className="theme-button"
             auto
             type="abort"
             onClick={() =>
-              prefers.switchTheme(theme.type === "dark" ? "light" : "dark")
+              router.push("https://github.com/shahriarsohan/mygpt-client")
             }
           >
-            {theme.type === "dark" ? (
-              <Icons.Sun size={16} />
-            ) : (
-              <Icons.Moon size={16} />
-            )}
-          </Button> */}
+            <Icons.GitHub size={16} />
+          </Button>
           <Popover
-            // content={<UserSettings />}
+            content={<UserSettings />}
             placement="bottomEnd"
             portalClassName="user-settings__popover"
           >
             <button className="user-settings__button">
-              <Avatar text="OA" />
+              <Avatar text={user?.email} />
             </button>
           </Popover>
         </div>

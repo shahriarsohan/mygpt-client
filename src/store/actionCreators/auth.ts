@@ -77,112 +77,18 @@ export const check_auth_status =
     }
   };
 
-export const request_refresh =
-  (router: NextRouter) => async (dispatch: Dispatch<AuthAction>) => {
-    dispatch({
-      type: AuthActionType.RefreshTokenTypes.REFRESH_TOKEN_START,
-    });
-    try {
-      const res = await fetch("http://127.0.0.1:8000/api/token/refresh/", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-        },
-      });
-
-      if (res.status === 200) {
-        dispatch({
-          type: AuthActionType.RefreshTokenTypes.REFRESH_TOKEN_SUCCESS,
-        });
-        // dispatch<any>(check_auth_status(router , ));
-      } else {
-        dispatch({
-          type: AuthActionType.RefreshTokenTypes.REFRESH_TOKEN_FAILD,
-          payload: "Somethin went wrong",
-        });
-      }
-    } catch (err) {
-      dispatch({
-        type: AuthActionType.RefreshTokenTypes.REFRESH_TOKEN_FAILD,
-        payload: "Somethin went wrong",
-      });
-    }
-  };
-
 export const logout =
   (router: NextRouter) => async (dispatch: Dispatch<AuthAction>) => {
     dispatch({
       type: AuthActionType.LogoutTypes.LOGOUT_START,
     });
 
-    try {
-      const res = await fetch("/api/accounts/logout", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-        },
-      });
-
-      if ((await res.status) === 200) {
-        void router.push("/auth/login");
-        dispatch({
-          type: AuthActionType.LogoutTypes.LOGOUT_SUCCESS,
-          payload: "Logged Out successfully",
-        });
-      } else {
-        dispatch({
-          type: AuthActionType.LogoutTypes.LOGOUT_FAILD,
-          payload: "Something went wrong",
-        });
-      }
-    } catch (err) {
-      dispatch({
-        type: AuthActionType.LogoutTypes.LOGOUT_FAILD,
-        payload: "Something went wrong",
-      });
-    }
-  };
-
-export const login_with_fb =
-  (access_token: string, router: NextRouter) =>
-  async (dispatch: Dispatch<AuthAction>) => {
-    const body = JSON.stringify({
-      access_token,
-    });
-
+    localStorage.removeItem("token");
+    router.push("/");
     dispatch({
-      type: AuthActionType.AuthWithFacebookTypes.AUTH_WITH_FACEBOOK_START,
+      type: AuthActionType.LogoutTypes.LOGOUT_SUCCESS,
+      payload: "Logged Out successfully",
     });
-
-    try {
-      const res: any = await fetch("/api/accounts/social/facebook", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body,
-      });
-      if (res.status === 200) {
-        void router.push("/");
-
-        dispatch({
-          type: AuthActionType.AuthWithFacebookTypes.AUTH_WITH_FACEBOOK_SUCCESS,
-          payload: res.data.success,
-        });
-        // dispatch<any>(check_auth_status(router , ));
-      } else {
-        dispatch({
-          type: AuthActionType.AuthWithFacebookTypes.AUTH_WITH_FACEBOOK_FAILD,
-          payload: "Something went wrong",
-        });
-      }
-    } catch (error) {
-      dispatch({
-        type: AuthActionType.AuthWithFacebookTypes.AUTH_WITH_FACEBOOK_FAILD,
-        payload: "Something went wrong",
-      });
-    }
   };
 
 export const login_with_google =

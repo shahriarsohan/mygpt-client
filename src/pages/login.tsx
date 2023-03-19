@@ -32,7 +32,11 @@ const Login: FC<Props> = ({ login_with_google }) => {
 
   const onFailure = (res: any): void => {};
 
-  return <div id="signInDiv">asdasd</div>;
+  return (
+    <div className="flex items-center justify-center min-h-screen">
+      <div id="signInDiv">asdasd</div>
+    </div>
+  );
 };
 
 interface LinkStateProps {

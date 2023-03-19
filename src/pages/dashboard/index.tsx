@@ -1,20 +1,32 @@
 import React from "react";
-import { Button, Grid, Input, useTheme } from "@geist-ui/react";
+import { Button, Grid, Input, Note, Spacer, useTheme } from "@geist-ui/react";
 import SearchIcon from "@geist-ui/react-icons/search";
 import { AppCard } from "@/components";
 import { useRouter } from "next/router";
 import { useFetch } from "@/hooks/useFetch";
+import { useFetchUser } from "@/hooks/useFetchUser";
+import Link from "next/link";
 
 const Page = () => {
   const router = useRouter();
   const theme = useTheme();
 
   const { loading, error, apps } = useFetch();
+  const { user } = useFetchUser();
 
   return (
     <>
       <div className="page__wrapper">
         <div className="page__content">
+          {user && user.license_key === null ? (
+            <>
+              <Note width={"100%"} type="warning">
+                Please enter your license key{" "}
+                <Link href={"/dashboard/settings"}>here</Link>
+              </Note>
+              <Spacer />
+            </>
+          ) : null}
           <div className="actions-stack">
             <Input
               scale={1.25}

@@ -11,10 +11,7 @@ import { connect, useDispatch } from "react-redux";
 import BeatLoader from "react-spinners/BeatLoader";
 import { ThunkDispatch } from "redux-thunk";
 
-import {
-  check_auth_status,
-  request_refresh,
-} from "../store/actionCreators/auth";
+import { check_auth_status } from "../store/actionCreators/auth";
 import { AuthAction } from "../store/actions/auth";
 
 interface LayoutPropsTypes {
@@ -89,8 +86,7 @@ const Layout: NextPage<Ptops> = ({
 };
 
 Layout.defaultProps = {
-  title: "Redshop Dashboard",
-  content: "All in one solutions for ecommerce and online businesses",
+  title: "MyGPT Dashboard",
 };
 
 interface LinkStateProps {
