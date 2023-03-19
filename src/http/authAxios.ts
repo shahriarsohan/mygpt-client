@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const authAxios = axios.create({
-  baseURL: "http://127.0.0.1:8000/api/",
+  baseURL: `${process.env.NEXT_PUBLIC_GOOGLE_API}/api/`,
   timeout: 30000,
   headers: {
     "Content-Type": "application/json",
