@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Card,
@@ -12,9 +12,9 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import authAxios from "@/http/authAxios";
 
-const settings = () => {
-  const [loading, setLoading] = React.useState<boolean>(false);
-  const [success, setSuccess] = React.useState<boolean>(false);
+const Settings = () => {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
 
   const [err, setErr] = React.useState<string | null>(null);
   const theme = useTheme();
@@ -130,4 +130,4 @@ const settings = () => {
   );
 };
 
-export default settings;
+export default Settings;

@@ -45,7 +45,7 @@ const Page = () => {
           </div>
           <Grid.Container gap={2} marginTop={1} justify="flex-start">
             {apps.map((app) => (
-              <Grid xs={24} sm={12} md={8}>
+              <Grid key={app.slug} xs={24} sm={12} md={8}>
                 <AppCard
                   name={app.name}
                   description={app.description}

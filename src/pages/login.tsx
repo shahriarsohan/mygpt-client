@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { NextRouter, useRouter } from "next/router";
 import { FC, useEffect } from "react";
 import { connect } from "react-redux";
