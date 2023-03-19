@@ -4,6 +4,7 @@ import { NextRouter } from "next/router";
 
 import { Dispatch } from "redux";
 import axios from "axios";
+import publixAxios from "@/http/publicAxios";
 
 export const load_user = () => async (dispatch: Dispatch<AuthAction>) => {
   dispatch({
@@ -53,7 +54,7 @@ export const check_auth_status =
       //   },
       // });
       const token = localStorage.getItem("token");
-      const res = await axios.post("http://127.0.0.1:8000/api/token/verify/", {
+      const res = await publixAxios.post("token/verify/", {
         token,
       });
 
@@ -105,12 +106,9 @@ export const login_with_google =
     });
 
     try {
-      const res = await axios.post(
-        "http://127.0.0.1:8000/api/account/rest-auth/google/",
-        {
-          access_token,
-        }
-      );
+      const res = await publixAxios.post("account/rest-auth/google/", {
+        access_token,
+      });
       if (res.status === 200) {
         localStorage.setItem("token", res.data.access_token);
         localStorage.setItem("refresh_token", res.data.refresh_token);
