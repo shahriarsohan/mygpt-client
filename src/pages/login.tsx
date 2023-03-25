@@ -9,6 +9,7 @@ import { ThunkDispatch } from "redux-thunk";
 import { AuthAction } from "@/store/actions/auth";
 import { bindActionCreators } from "@reduxjs/toolkit";
 import { login_with_google } from "@/store/actionCreators/auth";
+import Head from "next/head";
 
 type Props = LinkStateProps & LinkDispatchToProps;
 
@@ -36,6 +37,9 @@ const Login: FC<Props> = ({ login_with_google }) => {
 
   return (
     <div className="flex items-center justify-center min-h-screen">
+      <Head>
+        <title>Login - MyGPT Dashboard</title>
+      </Head>
       <div id="signInDiv">asdasd</div>
     </div>
   );

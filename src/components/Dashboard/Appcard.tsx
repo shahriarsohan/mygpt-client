@@ -43,13 +43,7 @@ const AppCard: React.FC<MyGptResponse> = ({
           </div>
           <div className="flex items-center justify-end">
             {/* <ButtonDropdown type="secondary" width={"full"}> */}
-            <Button
-              onClick={() =>
-                router.push(`${process.env.NEXT_PUBLIC_BASE_URL}${slug}`)
-              }
-            >
-              Launch
-            </Button>
+            <Button onClick={() => router.push(`/${slug}`)}>Launch</Button>
             {/* </ButtonDropdown> */}
           </div>
         </Card>
